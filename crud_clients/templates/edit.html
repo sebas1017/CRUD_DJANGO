@@ -16,25 +16,7 @@
   </div>  
    </div>  
    <h3>{{errors}} </h3>  
-   <div class="form-group row">  
-  <label class="col-sm-2 col-form-label">Customer Name:</label>  
-  <div class="col-sm-4">  
-   <input type="text" class="form-control" name="name" id="id_name" required maxlength="100" value="{{ Customer.name }}" />  
-  </div>  
-   </div>  
-  <div class="form-group row">  
-  <label class="col-sm-2 col-form-label">Customer Email:</label>  
-  <div class="col-sm-4">  
-   <input type="email" class="form-control" name="email" id="id_email" required maxlength="254" value="{{ Customer.email }}" />  
-  </div>  
-   </div>  
-  <div class="form-group row">  
-  <label class="col-sm-2 col-form-label">Customer Contact:</label>  
-  <div class="col-sm-4">  
-   <input type="text" class="form-control" name="contact" id="id_contact" required maxlength="15" value="{{ Customer.contact }}" />  
-  </div>  
-   </div>  
-
+ 
 
    <div class="form-group row">  
     <label class="col-sm-2 col-form-label">Date attention:</label>  
@@ -75,13 +57,20 @@
 
 
            <div class="form-group row">  
-            <label class="col-sm-2 col-form-label">City</label>  
+            <label class="col-sm-2 col-form-label">City actually</label>  
             <div class="col-sm-4">  
-             <input type="text" class="form-control" name="city" id="id_contact" required maxlength="50" value="{{ Customer.city }}" />  
+         {{ Customer.city }}
             </div>  
              </div>  
 
-
+             <div class="form-group row">  
+              <label class="col-sm-2 col-form-label">City</label>  
+              <div class="col-sm-4">  
+        {{ form.city }}
+              </div>  
+               </div>  
+  
+  
 
 
 

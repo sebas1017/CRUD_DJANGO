@@ -46,9 +46,6 @@ class City(models.Model):
         return self.iso_code
 
 class Customer(models.Model):  
-    name = models.CharField(max_length=50)  
-    email = models.EmailField()  
-    contact = models.CharField(max_length=15) 
     date_attention= models.DateField()
     time_attention  =models.TimeField()
     final_attention_time = models.TimeField()
@@ -58,3 +55,7 @@ class Customer(models.Model):
     response  =models.CharField(max_length=200) 
     date_of_request = models.DateField() 
     city = models.ForeignKey('City', on_delete=models.CASCADE)
+    company = models.ForeignKey('Company', on_delete=models.CASCADE)
+
+class Company(models.Model):  
+    name = models.CharField(max_length=50)
