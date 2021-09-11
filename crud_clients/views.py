@@ -14,9 +14,6 @@ def addnew(request):
         if company_querie is None:
             Company.objects.create(name=company_data)
             Company.save()
-        if company_querie is  None:
-            company = Company.objects.create(name=company_data)
-            company.save()
         tiempo = valida_tiempo(request.POST["time_attention"],request.POST["final_attention_time"],request.POST["date_of_request"])
         if tiempo is not None:
             #return render(request, 'edit.html', {'Customer': Customers,'errors':tiempo , "form":form}) 
