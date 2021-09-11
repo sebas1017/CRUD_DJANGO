@@ -40,11 +40,11 @@ def update(request, id):
     company_data = request.POST["company"]
     company_data = company_data.strip().upper()
     company_querie = Company.objects.filter(name=company_data).first()
-    if company_querie is  None:
-        Company.objects.create(name=company_data)
-        Company.save()
+    if company_querie is None:
+        company = Company.objects.create(name=company_data)
+        company = Company.save()
     request.POST._mutable = True
-    request.POST["company"] = Company.objects.filter(name=company_data).first().id
+    request.POST["company"] = company_data
     error = ''
     Customers = Customer.objects.get(id=id)  
     form = CustomerForm(request.POST, instance = Customers)  
