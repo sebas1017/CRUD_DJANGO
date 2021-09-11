@@ -4,7 +4,7 @@ from .models import  Customer  ,Company
 from django.http  import HttpResponse
 from .functions import quitar_espacios,valida_tiempo
 from datetime import datetime, time
-# Create your views here.  
+
 def addnew(request):  
     error = ''
     if request.method == "POST":  
@@ -16,15 +16,12 @@ def addnew(request):
             Company.save()
         tiempo = valida_tiempo(request.POST["time_attention"],request.POST["final_attention_time"],request.POST["date_of_request"])
         if tiempo is not None:
-            #return render(request, 'edit.html', {'Customer': Customers,'errors':tiempo , "form":form}) 
             return render(request,'index.html',{'form':form , 'errors':tiempo})
-
 
         request.POST._mutable = True
         request.POST["company"] = Company.objects.filter(name=company_data).first().id
         if form.is_valid():  
             try:  
-                error = 'Registro exitoso'
                 form.save()  
                 return redirect('/')  
             except:  
@@ -33,16 +30,21 @@ def addnew(request):
             error = 'El formato de fecha es incorrecto , recuerde el formato es aaaa-mm-dd'
     else:  
         form = CustomerForm()  
-    return render(request,'index.html',{'form':form , 'errors':error})  
+    return render(request,'index.html',{'form':form , 'errors':error}) 
+
+
 def index(request):  
     Customers = Customer.objects.all()  
-    return render(request,"show.html",{'Customers':Customers})  
+    return render(request,"show.html",{'Customers':Customers}) 
+
+
 def edit(request, id):
     form = CustomerForm()    
     Customers = Customer.objects.get(id=id)  
-    return render(request,'edit.html', {'Customer':Customers , 'form':form})  
+    return render(request,'edit.html', {'Customer':Customers , 'form':form})
+
+
 def update(request, id):
-    
     Customers = Customer.objects.get(id=id)  
     form = CustomerForm(request.POST, instance = Customers)  
     company_data = quitar_espacios(request.POST["company"])
@@ -61,13 +63,14 @@ def update(request, id):
     error = ''
     form = CustomerForm(request.POST, instance = Customers)  
     if form.is_valid():  
-        print("llegue")
         form.save()  
         return redirect("/") 
     else:
         form = CustomerForm()
         error ='Datos de actualizacion incompletos'
-    return render(request, 'edit.html', {'Customer': Customers,'errors':error , "form":form})  
+    return render(request, 'edit.html', {'Customer': Customers,'errors':error , "form":form})
+
+  
 def destroy(request, id):  
     Customers = Customer.objects.get(id=id)  
     Customers.delete()  
