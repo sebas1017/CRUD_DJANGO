@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crud_clients'
+    'crud_clients',
 ]
 
 MIDDLEWARE = [
@@ -73,15 +73,25 @@ WSGI_APPLICATION = 'crud_datatable.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
+'''
+# Ambiente Heroku
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd4f8uq8h29d2af',
+        'USER': 'psufvpczvmusvc',
+        'PASSWORD': 'abcdf272ac44bfeafa6ea76134e394e81f7ea8fab9c6ea8b4860249de5b182e8',
+        'HOST': 'ec2-44-197-94-126.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
