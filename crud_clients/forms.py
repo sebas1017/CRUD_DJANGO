@@ -7,7 +7,7 @@ class CustomerForm(forms.ModelForm):
 'final_attention_time', 'company' ,'city', 'affair', 'response', 'date_of_request'
         ] #https://docs.djangoproject.com/en/3.0/ref/forms/widgets/
         ciudades = City.objects.all()
-        a = [(i.id,i.nombre_ciudad) for i in ciudades]
+        a = [(i.id,i.name) for i in ciudades]
         CHOICES = tuple(a)
         widgets = { 'name': forms.TextInput(attrs={ 'class': 'form-control' }), 
             'email': forms.EmailInput(attrs={ 'class': 'form-control' }),
@@ -16,7 +16,8 @@ class CustomerForm(forms.ModelForm):
             'time_attention': forms.TimeInput(attrs={ 'type':'time'}),
             'final_attention_time': forms.TimeInput(attrs={'type':'time'}),
             'company': forms.TextInput(attrs={ 'class': 'form-control' }),
-            'city': forms.TextInput(attrs={ 'class': 'form-control' }),
+            #'city': forms.TextInput(attrs={ 'class': 'form-control' }),
+            'city' : forms.TypedChoiceField(choices=CHOICES, coerce=str),
             'affair': forms.TextInput(attrs={ 'class': 'form-control' }),
             'response': forms.TextInput(attrs={ 'class': 'form-control' }),
             'date_of_request': forms.DateInput(attrs={ 'class': 'form-control' }),
