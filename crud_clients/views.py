@@ -19,7 +19,9 @@ def addnew(request):
             company.save()
         tiempo = valida_tiempo(request.POST["time_attention"],request.POST["final_attention_time"],request.POST["date_of_request"])
         if tiempo is not None:
-            return render(request, 'edit.html', {'Customer': Customers,'errors':tiempo , "form":form}) 
+            #return render(request, 'edit.html', {'Customer': Customers,'errors':tiempo , "form":form}) 
+            return render(request,'index.html',{'form':form , 'errors':tiempo})
+
 
         request.POST._mutable = True
         request.POST["company"] = Company.objects.filter(name=company_data).first().id
