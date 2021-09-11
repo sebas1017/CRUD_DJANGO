@@ -1,21 +1,5 @@
 from django.db import models
 
-class Customer(models.Model):  
-    name = models.CharField(max_length=100)  
-    email = models.EmailField()  
-    contact = models.CharField(max_length=15) 
-    date_attention= models.DateField()
-    time_attention  =models.TimeField()
-    final_attention_time = models.TimeField()
-    company = models.CharField(max_length=50) 
-    city = models.CharField(max_length=50) 
-    affair = models.CharField(max_length=50) 
-    response  =models.CharField(max_length=150) 
-    date_of_request = models.DateField() 
-    city = models.ForeignKey('City', on_delete=models.CASCADE)
-    class Meta:  
-        db_table = "Customer"
-
 
 
 
@@ -60,3 +44,21 @@ class City(models.Model):
     def get_short_name(self):
         """Return iso_code."""
         return self.iso_code
+
+class Customer(models.Model):  
+    name = models.CharField(max_length=100)  
+    email = models.EmailField()  
+    contact = models.CharField(max_length=15) 
+    date_attention= models.DateField()
+    time_attention  =models.TimeField()
+    final_attention_time = models.TimeField()
+    company = models.CharField(max_length=50) 
+    city = models.CharField(max_length=50) 
+    affair = models.CharField(max_length=50) 
+    response  =models.CharField(max_length=150) 
+    date_of_request = models.DateField() 
+    city = models.ForeignKey('City', on_delete=models.CASCADE)
+    class Meta:  
+        db_table = "Customer"
+
+
