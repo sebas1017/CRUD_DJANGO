@@ -2,15 +2,13 @@ from django.shortcuts import render, redirect
 from .forms import CustomerForm  
 from .models import  Customer  ,Company
 from django.http  import HttpResponse
-from .functions import quitar_espacios
+from .functions import quitar_espacios,valida_tiempo
 from datetime import datetime, time
 # Create your views here.  
 def addnew(request):  
     error = ''
     if request.method == "POST":  
         form = CustomerForm(request.POST)
-        #company_data = request.POST["company"]
-        #company_data = company_data.strip().upper()
         company_data = quitar_espacios(request.POST["company"])
         company_querie = Company.objects.filter(name=company_data).first()
         if company_querie is None:
@@ -60,36 +58,33 @@ def edit(request, id):
     Customers = Customer.objects.get(id=id)  
     return render(request,'edit.html', {'Customer':Customers , 'form':form})  
 def update(request, id):
-
-    #company_data = request.POST["company"]
-    #company_data = company_data.strip().upper()
-    company_data = quitar_espacios(request.POST["company"])
+    
     Customers = Customer.objects.get(id=id)  
     form = CustomerForm(request.POST, instance = Customers)  
-    company_data = request.POST["company"]
-    company_data = company_data.strip().upper()
+    company_data = quitar_espacios(request.POST["company"])
     company_querie = Company.objects.filter(name=company_data).first()
     if company_querie is None:
         company = Company.objects.create(name=company_data)
         company.save()
         company_querie = Company.objects.filter(name=company_data).first()
 
-    
-    time_attention =  datetime.strptime(request.POST["time_attention"] , '%H:%M') 
-    final_attention_time = datetime.strptime(request.POST["final_attention_time"] , '%H:%M') 
-    if final_attention_time < time_attention:
-            error = 'La hora final de atencion no puede ser menor a la hora inicial de atencion...'
-            return render(request, 'edit.html', {'Customer': Customers,'errors':error , "form":form}) 
+    #time_attention =  datetime.strptime(request.POST["time_attention"] , '%H:%M') 
+    #final_attention_time = datetime.strptime(request.POST["final_attention_time"] , '%H:%M') 
+    tiempo = valida_tiempo(request.POST["time_attention"],request.POST["final_attention_time"],request.POST["date_of_request"])
+    #if final_attention_time < time_attention:
+    #        error = 'La hora final de atencion no puede ser menor a la hora inicial de atencion...'
+    #        return render(request, 'edit.html', {'Customer': Customers,'errors':error , "form":form}) 
 
-
-    try:
-        date_time_obj = datetime. strptime(request.POST["date_of_request"] , '%Y-%m-%d')
-        if date_time_obj > datetime.now():
-            error = 'La fecha de solicitud no puede ser mayor a la fecha actual , gracias...'
-            return render(request, 'edit.html', {'Customer': Customers,'errors':error , "form":form})  
-    except:
-        error = 'El formato de fecha del campo Date of request no es el adecuado recuerde yyyy-mm-dd...'
-        return render(request, 'edit.html', {'Customer': Customers,'errors':error , "form":form})  
+    if tiempo is not None:
+        return render(request, 'edit.html', {'Customer': Customers,'errors':tiempo , "form":form}) 
+    #try:
+    #    date_time_obj = datetime. strptime(request.POST["date_of_request"] , '%Y-%m-%d')
+    #    if date_time_obj > datetime.now():
+    #        error = 'La fecha de solicitud no puede ser mayor a la fecha actual , gracias...'
+    #        return render(request, 'edit.html', {'Customer': Customers,'errors':error , "form":form})  
+    #except:
+    #    error = 'El formato de fecha del campo Date of request no es el adecuado recuerde yyyy-mm-dd...'
+    #    return render(request, 'edit.html', {'Customer': Customers,'errors':error , "form":form})  
 
 
 
