@@ -20,5 +20,4 @@ def valida_tiempo(time_attention,final_attention_time,date_of_request):
     except:
         error = 'El formato de fecha del campo Date of request no es el adecuado recuerde yyyy-mm-dd...'
         return error
-    
     return None
