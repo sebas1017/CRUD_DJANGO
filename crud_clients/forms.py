@@ -1,11 +1,14 @@
 from django import forms  
-from .models import Customer  
+from .models import Customer,City
 class CustomerForm(forms.ModelForm):  
     class Meta:  
         model = Customer  
         fields = ['name', 'contact', 'email','date_attention','time_attention',
 'final_attention_time', 'company' ,'city', 'affair', 'response', 'date_of_request'
         ] #https://docs.djangoproject.com/en/3.0/ref/forms/widgets/
+        ciudades = City.objects.all()
+        a = [(i.id,i.nombre_ciudad) for i in ciudades]
+        CHOICES = tuple(a)
         widgets = { 'name': forms.TextInput(attrs={ 'class': 'form-control' }), 
             'email': forms.EmailInput(attrs={ 'class': 'form-control' }),
             'contact': forms.TextInput(attrs={ 'class': 'form-control' }),

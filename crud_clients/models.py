@@ -11,7 +11,7 @@ class Country(models.Model):
     class Meta:
         verbose_name_plural = "Countries"
 
-    name = models.CharField(max_length=20, null=False)
+    name = models.CharField(max_length=35, null=False)
 
     iso_code = models.CharField(max_length=5, unique=True, null=False)
 
@@ -46,7 +46,7 @@ class City(models.Model):
         return self.iso_code
 
 class Customer(models.Model):  
-    name = models.CharField(max_length=100)  
+    name = models.CharField(max_length=50)  
     email = models.EmailField()  
     contact = models.CharField(max_length=15) 
     date_attention= models.DateField()
@@ -55,10 +55,6 @@ class Customer(models.Model):
     company = models.CharField(max_length=50) 
     city = models.CharField(max_length=50) 
     affair = models.CharField(max_length=50) 
-    response  =models.CharField(max_length=150) 
+    response  =models.CharField(max_length=200) 
     date_of_request = models.DateField() 
     city = models.ForeignKey('City', on_delete=models.CASCADE)
-    class Meta:  
-        db_table = "Customer"
-
-
