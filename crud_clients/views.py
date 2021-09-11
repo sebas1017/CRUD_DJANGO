@@ -42,7 +42,7 @@ def update(request, id):
     company_querie = Company.objects.filter(name=company_data).first()
     if company_querie is None:
         company = Company.objects.create(name=company_data)
-        company = Company.save()
+        company.save()
     request.POST._mutable = True
     request.POST["company"] = company_data
     error = ''
