@@ -2,15 +2,17 @@ from django.shortcuts import render, redirect
 from .forms import CustomerForm  
 from .models import  Customer  ,Company
 from django.http  import HttpResponse
+from .functions import quitar_espacios
 # Create your views here.  
 def addnew(request):  
     error = ''
     if request.method == "POST":  
         form = CustomerForm(request.POST)
-        company_data = request.POST["company"]
-        company_data = company_data.strip().upper()
+        #company_data = request.POST["company"]
+        #company_data = company_data.strip().upper()
+        company_data = quitar_espacios(request.POST["company"])
         company_querie = Company.objects.filter(name=company_data).first()
-        if company_querie is  None:
+        if company_querie is None:
             Company.objects.create(name=company_data)
             Company.save()
         request.POST._mutable = True
@@ -23,7 +25,6 @@ def addnew(request):
             except:  
                 pass 
         else:
-            print(form.errors)
             error = 'El formato de fecha es incorrecto , recuerde el formato es aaaa-mm-dd'
     else:  
         form = CustomerForm()  
@@ -37,8 +38,9 @@ def edit(request, id):
     return render(request,'edit.html', {'Customer':Customers , 'form':form})  
 def update(request, id):
 
-    company_data = request.POST["company"]
-    company_data = company_data.strip().upper()
+    #company_data = request.POST["company"]
+    #company_data = company_data.strip().upper()
+    company_data = quitar_espacios(request.POST["company"])
     company_querie = Company.objects.filter(name=company_data).first()
     if company_querie is None:
         company = Company.objects.create(name=company_data)
