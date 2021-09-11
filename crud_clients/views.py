@@ -60,17 +60,14 @@ def edit(request, id):
     Customers = Customer.objects.get(id=id)  
     return render(request,'edit.html', {'Customer':Customers , 'form':form})  
 def update(request, id):
-<<<<<<< HEAD
 
     #company_data = request.POST["company"]
     #company_data = company_data.strip().upper()
     company_data = quitar_espacios(request.POST["company"])
-=======
     Customers = Customer.objects.get(id=id)  
     form = CustomerForm(request.POST, instance = Customers)  
     company_data = request.POST["company"]
     company_data = company_data.strip().upper()
->>>>>>> 8179972d682e2429801a3c6074f6688cdb84a372
     company_querie = Company.objects.filter(name=company_data).first()
     if company_querie is None:
         company = Company.objects.create(name=company_data)
