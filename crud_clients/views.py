@@ -13,6 +13,8 @@ def addnew(request):
         if company_querie is  None:
             Company.objects.create(name=company_data)
             Company.save()
+        request.POST._mutable = True
+        request.POST["company"] = Company.objects.filter(name=company_data).first().id
         if form.is_valid():  
             try:  
                 error = 'Registro exitoso'
@@ -34,17 +36,26 @@ def edit(request, id):
     Customers = Customer.objects.get(id=id)  
     return render(request,'edit.html', {'Customer':Customers , 'form':form})  
 def update(request, id):
-    print(request.POST)  
+
+    company_data = request.POST["company"]
+    company_data = company_data.strip().upper()
+    company_querie = Company.objects.filter(name=company_data).first()
+    if company_querie is  None:
+        Company.objects.create(name=company_data)
+        Company.save()
+    request.POST._mutable = True
+    request.POST["company"] = Company.objects.filter(name=company_data).first().id
     error = ''
     Customers = Customer.objects.get(id=id)  
     form = CustomerForm(request.POST, instance = Customers)  
     if form.is_valid():  
+        print("llegue")
         form.save()  
         return redirect("/") 
     else:
-        print(form.errors)
+        form = CustomerForm()
         error ='Datos de actualizacion incompletos'
-    return render(request, 'edit.html', {'Customer': Customers,'errors':error})  
+    return render(request, 'edit.html', {'Customer': Customers,'errors':error , "form":form})  
 def destroy(request, id):  
     Customers = Customer.objects.get(id=id)  
     Customers.delete()  
