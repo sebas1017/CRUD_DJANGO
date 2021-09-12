@@ -20,13 +20,13 @@
 
    <h3>{{errors}} </h3>  
   
+
    <div class="form-group row">  
       <label class="col-sm-2 col-form-label">Date attention:</label>  
       <div class="col-sm-4">  
-       <input type="date" class="form-control" name="date_attention" id="id_contact"  value={{ form.date_attention }}/>  
+       <input type="date" class="form-control" name="date_attention" id="id_contact"  value="{{ "form.date_attention" }}">  
       </div>  
        </div>  
-  
 
      <div class="form-group row">  
       <label class="col-sm-2 col-form-label">Time attention:</label>  
@@ -84,15 +84,13 @@
                
                
 
-
                
-             <div class="form-group row">  
-              <label class="col-sm-2 col-form-label">Date of request</label>  
-              <div class="col-sm-4">  
-            {{ form.date_of_request }}
-              </div>  
-               </div>  
-
+               <div class="form-group row">  
+                  <label class="col-sm-2 col-form-label">Date of request</label>  
+                  <div class="col-sm-4">  
+                   <input type="date" class="form-control" name="date_of_request" id="id_contact"  value="{{ "form.date_of_request" }}" />  
+                  </div>  
+                   </div>  
 
                <div class="form-group row">  
                 <label class="col-sm-1 col-form-label"></label>  
@@ -104,8 +102,9 @@
               
 
 
-
-
+                 <a href="/">
+                  <input type="button" value="Home" />
+               </a>
 
   </div>  
  </form>  
