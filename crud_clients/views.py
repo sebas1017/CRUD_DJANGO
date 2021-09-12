@@ -17,10 +17,6 @@ def addnew(request):
         tiempo = valida_tiempo(request.POST["time_attention"],request.POST["final_attention_time"],request.POST["date_of_request"])
         if tiempo is not None:
             return render(request,'index.html',{'form':form , 'errors':tiempo})
-<<<<<<< HEAD
-=======
-
->>>>>>> a119b47fb9cadc9fdc145fd7c0572df97206ae9b
         request.POST._mutable = True
         request.POST["company"] = Company.objects.filter(name=company_data).first().id
         if form.is_valid():  
