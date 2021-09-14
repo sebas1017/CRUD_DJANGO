@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-xk5-s(p&866r2ujf=z11^f)3e56nhho9h$!-epu^ml_qqv1*zh
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Application definition
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'crud_datatable.urls'
