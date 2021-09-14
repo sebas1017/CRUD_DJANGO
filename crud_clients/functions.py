@@ -8,7 +8,7 @@ def quitar_espacios(valor):
     return valor
 def valida_tiempo(time_attention,final_attention_time,date_of_request):
     time_attention =  datetime.strptime(time_attention , '%H:%M') 
-    final_attention_time = datetime.strptime(final_attention_time , '%H:%M') 
+    final_attention_time = datetime.strptime(final_attention_time , '%H:%M')
     if final_attention_time < time_attention:
         error = 'La hora final de atencion no puede ser menor a la hora inicial de atencion...'
         return error 

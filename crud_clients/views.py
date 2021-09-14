@@ -5,18 +5,19 @@ from .functions import quitar_espacios,valida_tiempo
 
 def addnew(request):  
     error = ''
+    form = CustomerForm()
     if request.method == "POST":  
-        form = CustomerForm(request.POST)
         company_data = quitar_espacios(request.POST["company"])
         company_querie = Company.objects.filter(name=company_data).first()
         if company_querie is None:
-            Company.objects.create(name=company_data)
-            Company.save()
+            data_querie = Company.objects.create(name=company_data)
+            data_querie.save()
         tiempo = valida_tiempo(request.POST["time_attention"],request.POST["final_attention_time"],request.POST["date_of_request"])
         if tiempo is not None:
             return render(request,'index.html',{'form':form , 'errors':tiempo})
         request.POST._mutable = True
         request.POST["company"] = Company.objects.filter(name=company_data).first().id
+        form = CustomerForm(request.POST)
         if form.is_valid():  
             try:  
                 form.save()  
@@ -25,9 +26,8 @@ def addnew(request):
                 pass 
         else:
             error = 'El formato de fecha es incorrecto , recuerde el formato es aaaa-mm-dd'
-    else:  
-        form = CustomerForm()  
-    return render(request,'index.html',{'form':form , 'errors':error}) 
+
+    return render(request,'index.html',{'form':CustomerForm() , 'errors':error}) 
 
 
 def index(request):  
@@ -61,7 +61,6 @@ def update(request, id):
         return render(request, 'edit.html', {'Customer': Customers,'errors':error_validation , "form":form})    
 
     tiempo = valida_tiempo(request.POST["time_attention"],request.POST["final_attention_time"],request.POST["date_of_request"])
-
     if tiempo is not None:
         return render(request, 'edit.html', {'Customer': Customers,'errors':tiempo , "form":form}) 
 
