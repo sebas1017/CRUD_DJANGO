@@ -1,6 +1,6 @@
  
  ![alt text](https://github.com/sebas1017/CRUD_DJANGO/blob/master/DEMO.jpg?raw=true)
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=sebas1017&repo=CRUD_DJANGO)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=sebas1017&repo=CRUD_DJANGO)](https://github.com/sebas1017/CRUD_DJANGO/)
 
 Tenemos una aplicacion CRUD realizada en el framework Django junto a python y utilizando una base de datos POSTGRESQL que corre en la nube 
 en un cluster de heroku, la aplicacion corriendo en la nube se encuentra en heroku pero estan en distintos servidores (base de datos y la aplicacion)
