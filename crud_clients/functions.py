@@ -19,6 +19,7 @@ def valida_tiempo(time_attention,final_attention_time,date_of_request):
             return error
         if time_attention == final_attention_time:
             error = 'La hora final de atencion no puede ser igual a la hora inicial de atencion'
+            return error
 
     except:
         error = 'El formato de fecha del campo Date of request no es el adecuado recuerde yyyy-mm-dd...'
