@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect  
 from .forms import CustomerForm  
 from .models import  Customer  ,Company
-from django.http  import HttpResponse
 from .functions import quitar_espacios,valida_tiempo
-from datetime import datetime, time
 
 def addnew(request):  
     error = ''
@@ -44,6 +42,7 @@ def edit(request, id):
 
 
 def update(request, id):
+    error_validation = ""
     Customers = Customer.objects.get(id=id)  
     form = CustomerForm(request.POST, instance = Customers)  
     company_data = quitar_espacios(request.POST["company"])
@@ -52,6 +51,15 @@ def update(request, id):
         company = Company.objects.create(name=company_data)
         company.save()
         company_querie = Company.objects.filter(name=company_data).first()
+
+    for llave, valor in request.POST.items():
+        if valor == '':
+            error_validation += "has ingresado uno de los campos del formulario ,  vacio favor verifique los campos y diligenciarlos nuevamente"
+            break
+
+    if error_validation != "":
+        return render(request, 'edit.html', {'Customer': Customers,'errors':error_validation , "form":form})    
+
     tiempo = valida_tiempo(request.POST["time_attention"],request.POST["final_attention_time"],request.POST["date_of_request"])
 
     if tiempo is not None:
