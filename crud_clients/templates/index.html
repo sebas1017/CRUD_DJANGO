@@ -15,7 +15,7 @@
   <div class="col-sm-4">  
   <h3>Enter Details</h3>  
   </div>  
-   </div>  
+  </div>  
    
 
    <h3>{{errors}} </h3>  
@@ -36,75 +36,75 @@
        </div>  
 
 
-       <div class="form-group row">  
-        <label class="col-sm-2 col-form-label">Final attention time:</label>  
-        <div class="col-sm-4">  
+<div class="form-group row">  
+<label class="col-sm-2 col-form-label">Final attention time:</label>  
+<div class="col-sm-4">  
 {{ form.final_attention_time }}
-        </div>  
-         </div>  
+</div>  
+</div>  
 
 
 
 
-         <div class="form-group row">  
-          <label class="col-sm-2 col-form-label">Company</label>  
-          <div class="col-sm-4">  
-    {{ form.company.name }}
-          </div>  
-           </div>  
+<div class="form-group row">  
+<label class="col-sm-2 col-form-label">Company</label>  
+<div class="col-sm-4">  
+{{form.company}}
+</div>  
+</div>  
 
 
 
 
-           <div class="form-group row">  
-            <label class="col-sm-2 col-form-label">City</label>  
-            <div class="col-sm-4">  
-      {{ form.city }}
+<div class="form-group row">  
+<label class="col-sm-2 col-form-label">City</label>  
+<div class="col-sm-4">  
+{{ form.city }}
+</div>  
+      </div>  
+
+
+
+
+      <div class="form-group row">  
+      <label class="col-sm-2 col-form-label">Affair</label>  
+      <div class="col-sm-4">  
+{{ form.affair }}
+      </div>  
+      </div>  
+
+
+      
+      <div class="form-group row">  
+      <label class="col-sm-2 col-form-label">Response</label>  
+      <div class="col-sm-4">  
+{{ form.response }}
+      </div>  
+      </div>
+      
+      
+
+      
+      <div class="form-group row">  
+      <label class="col-sm-2 col-form-label">Date of request</label>  
+      <div class="col-sm-4">  
+            <input type="date" class="form-control" name="date_of_request" id="id_contact"  value="{{ "form.date_of_request" }}" />  
+      </div>  
             </div>  
-             </div>  
 
-
-
-
-             <div class="form-group row">  
-              <label class="col-sm-2 col-form-label">Affair</label>  
-              <div class="col-sm-4">  
-        {{ form.affair }}
-              </div>  
-               </div>  
-
-
-               
-             <div class="form-group row">  
-              <label class="col-sm-2 col-form-label">Response</label>  
-              <div class="col-sm-4">  
-          {{ form.response }}
-              </div>  
-               </div>
-               
-               
-
-               
-               <div class="form-group row">  
-                  <label class="col-sm-2 col-form-label">Date of request</label>  
-                  <div class="col-sm-4">  
-                   <input type="date" class="form-control" name="date_of_request" id="id_contact"  value="{{ "form.date_of_request" }}" />  
-                  </div>  
-                   </div>  
-
-               <div class="form-group row">  
-                <label class="col-sm-1 col-form-label"></label>  
-                <div class="col-sm-4">  
-                <button type="submit" class="btn btn-primary">Submit</button>  
-                </div>  
-                 </div>  
-              
+      <div class="form-group row">  
+      <label class="col-sm-1 col-form-label"></label>  
+      <div class="col-sm-4">  
+      <button type="submit" class="btn btn-primary">Submit</button>  
+      </div>  
+      </div>  
+      
               
 
 
-                 <a href="/">
-                  <input type="button" value="Home" />
-               </a>
+      <a href="/">
+      <input type="button" value="Home" />
+      </a>
 
   </div>  
  </form>  
