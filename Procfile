@@ -1,1 +1,1 @@
-web: gunicorn geteco.wsgi --log-file -
+web: gunicorn crud_datatable.wsgi --log-file -
