@@ -30,5 +30,4 @@ de acuerdo a los requerimientos planteados tenemos validacion de campos vacios ,
 y validacion de formatos de fechas  , por lo que tambien puede observar la aplicacion corriendo en la nube en el siguiente url
 
 
-https://geteco-app.herokuapp.com/
 
